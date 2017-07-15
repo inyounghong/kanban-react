@@ -1,0 +1,29 @@
+.app {
+  background-color: white;
+  min-height: 100vh;
+  position: relative;
+
+}
+
+.app-title {
+  border-bottom: 1px solid rgba($gray-light, .2);
+  border-top: 2px solid $primary;
+  font-weight: 400;
+  margin-bottom: .5em;
+  padding: .5em 1em;
+  text-align: left;
+}
+
+.kanban {
+    margin-right: 300px;
+}
+
+.sidebar {
+    width: 300px;
+    padding: 30px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    border-left: 1px solid #ddd;
+    height: 100%;
+}

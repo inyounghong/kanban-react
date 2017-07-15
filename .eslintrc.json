@@ -1,0 +1,32 @@
+{
+  "rules": {
+    "keyword-spacing": [2, {
+      "overrides": {
+        "if": {"after": false}
+      }
+    }],
+    "max-len": [2, {"code": 120, "tabWidth": 2, "ignoreUrls": true}],
+    "new-cap": 0,
+    "no-console": 0,
+    "no-param-reassign": 0,
+    "prefer-arrow-callback": [2, { "allowNamedFunctions": true }],
+    "react/prefer-stateless-function": 0,
+    "valid-jsdoc": [
+      2,
+      {
+        "requireReturn": false,
+        "requireReturnDescription": false
+      }
+    ]
+  },
+
+  "env": {
+    "mocha": true
+  },
+
+  "plugins": [
+    "react"
+  ],
+
+  "extends": ["eslint:recommended", "airbnb"]
+}
