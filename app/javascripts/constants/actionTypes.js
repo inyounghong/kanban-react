@@ -10,6 +10,7 @@ export const CREATE_NOTE = 'CREATE_NOTE';
 export const UPDATE_NOTE = 'UPDATE_NOTE';
 export const DELETE_NOTE = 'DELETE_NOTE';
 export const ADD_TASK_TO_NOTE = 'ADD_TASK_TO_NOTE';
+export const REMOVE_TASK_FROM_NOTE = 'REMOVE_TASK_FROM_NOTE';
 
 export const CREATE_TAG = 'CREATE_TAG';
 export const UPDATE_TAG = 'UPDATE_TAG';
@@ -18,5 +19,6 @@ export const DELETE_TAG = 'DELETE_TAG';
 export const CREATE_TASK = 'CREATE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
+export const MOVE_TASK = 'DELETE_TASK';
 
 export const SELECT_NOTE = 'SELECT_NOTE';

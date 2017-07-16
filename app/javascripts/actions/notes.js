@@ -75,9 +75,21 @@ function addTaskToNote(noteId, taskId) {
   if((!isV4(noteId)) || (!isV4(taskId))) {
     throw new Error(`params ${noteId} ${taskId}`);
   }
-
   return {
     type: actionTypes.ADD_TASK_TO_NOTE,
+    payload: {
+      noteId,
+      taskId,
+    },
+  };
+}
+
+function removeTaskFromNote(noteId, taskId) {
+  if((!isV4(noteId)) || (!isV4(taskId))) {
+    throw new Error(`params ${noteId} ${taskId}`);
+  }
+  return {
+    type: actionTypes.REMOVE_TASK_FROM_NOTE,
     payload: {
       noteId,
       taskId,
@@ -90,4 +102,5 @@ export default {
   updateNote,
   deleteNote,
   addTaskToNote,
+  removeTaskFromNote,
 };

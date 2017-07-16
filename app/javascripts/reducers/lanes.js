@@ -79,7 +79,6 @@ export default function lanes(state = defaultState, action) {
     case actionTypes.MOVE_NOTE: {
       const sourceId = action.payload.sourceId;
       const targetId = action.payload.targetId;
-      console.log(sourceId, targetId);
       const sourceLane = state.filter(lane => ~lane.notes.indexOf(sourceId))[0];
       const targetLane = state.filter(lane => ~lane.notes.indexOf(targetId))[0];
       const sourceNoteIndex = sourceLane.notes.indexOf(sourceId);

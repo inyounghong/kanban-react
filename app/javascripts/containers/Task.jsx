@@ -1,4 +1,4 @@
-import Note from '../components/Note.jsx';
+import Task from '../components/list/Task.jsx';
 import appActions from '../actions/app';
 import tasksActions from '../actions/tasks';
 import notesActions from '../actions/notes';
@@ -7,7 +7,7 @@ import { DropTarget } from 'react-dnd';
 import * as itemTypes from '../constants/itemTypes';
 import { connect } from 'react-redux';
 
-const noteSource = {
+const taskSource = {
     beginDrag(props) {
         const item = {
             id: props.id,
@@ -19,25 +19,23 @@ const noteSource = {
     },
 };
 
-const noteTarget = {
+const taskTarget = {
   hover(targetProps, monitor) {
-    //   console.log(targetProps);
     const targetId = targetProps.id;
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;
-
     if(sourceId !== targetId) {
-      targetProps.onMoveNote(sourceId, targetId);
+      targetProps.onMoveListTask(sourceId, targetId);
     }
   },
 };
 
 const mapStateToProps = (state) => ({
-    selectedNote: state.app,
+    // selectedNote: state.app,
 });
 const mapDispatchToProps = (dispatch) => ({
-    selectNote(noteId) {
-        dispatch(appActions.selectNote(noteId));
+    onMoveListTask(sourceId, targetId) {
+        dispatch(tasksActions.moveTask(sourceId, targetId));
     },
 });
 
@@ -52,6 +50,6 @@ const collectDropTarget = (connect) => ({
 
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-    DragSource(itemTypes.NOTE, noteSource, collectDragSource)(
-  DropTarget(itemTypes.NOTE, noteTarget, collectDropTarget)(Note)
+    DragSource(itemTypes.TASK, taskSource, collectDragSource)(
+    DropTarget(itemTypes.TASK, taskTarget, collectDropTarget)(Task)
 ));

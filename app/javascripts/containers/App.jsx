@@ -7,6 +7,7 @@ import notesActions from '../actions/notes';
 import { connect } from 'react-redux';
 import Lanes from '../components/Lanes.jsx';
 import Sidebar from '../components/Sidebar.jsx';
+import List from '../components/list/List.jsx';
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
@@ -20,12 +21,17 @@ class App extends React.Component {
         }
         this.addTagToNote = this.addTagToNote.bind(this);
         this.setEditingNote = this.setEditingNote.bind(this);
+        this.handleDeleteTask = this.handleDeleteTask.bind(this);
     }
     addTagToNote() {
         console.log("adding tag to note");
     }
     setEditingNote(noteId) {
         setState({editingNote: noteId});
+    }
+    handleDeleteTask(taskId) {
+        // this.setState({editingNote: null});
+        this.props.deleteTask(this.props.selectedNote, taskId);
     }
     renderTagDisplay() {
         const tags = this.props.tags.map(tag => (
@@ -49,13 +55,14 @@ class App extends React.Component {
     }
 
   render() {
-      console.log(this.props);
-
       const selectedNote = this.props.notes.find(note => {
           return note.id === this.props.selectedNote;
       });
-      const selectedNoteTasks = selectedNote.tasks.map(taskId =>
-          this.props.tasks.find(task => task.id === taskId));
+      var selectedNoteTasks;
+      if (selectedNote) {
+          selectedNoteTasks = selectedNote.tasks.map(taskId =>
+              this.props.tasks.find(task => task.id === taskId));
+      }
 
     return (
       <div className="react-kanban">
@@ -73,21 +80,31 @@ class App extends React.Component {
             >
               Reset persisted store
             </button>
-            <Lanes
-              lanes={this.props.lanes}
-              onEditLane={this.props.onEditLane}
-              onDeleteLane={this.props.onDeleteLane}
-              onMoveLane={this.props.onMoveLane}
-              selectNote={this.selectNote}
-            />
-            {this.renderTagDisplay()}
-            {this.renderTagList()}
+            <div className="container">
+                <Lanes
+                  lanes={this.props.lanes}
+                  onEditLane={this.props.onEditLane}
+                  onDeleteLane={this.props.onDeleteLane}
+                  onMoveLane={this.props.onMoveLane}
+                  selectNote={this.selectNote}
+                />
+                {this.renderTagDisplay()}
+                {this.renderTagList()}
+
+                <List
+                    notes={this.props.notes}
+                    tasks={this.props.tasks}
+                />
+            </div>
         </div>
         <Sidebar
             selectedNote={selectedNote}
             tasks={selectedNoteTasks}
             addTask={this.props.addTask}
+            updateTask={this.props.updateTask}
+            deleteTask={this.handleDeleteTask}
         />
+
       </div>
     );
   }
@@ -115,6 +132,13 @@ const mapDispatchToProps = (dispatch) => ({
       const newTask = tasksActions.createTask(taskText);
       dispatch(newTask);
       dispatch(notesActions.addTaskToNote(noteId, newTask.payload.id));
+    },
+    updateTask(task) {
+        dispatch(tasksActions.updateTask(task));
+    },
+    deleteTask(noteId, taskId) {
+        dispatch(tasksActions.deleteTask(taskId));
+        dispatch(notesActions.removeTaskFromNote(noteId, taskId))
     },
 
   onCreateLane() {

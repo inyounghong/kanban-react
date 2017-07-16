@@ -13,11 +13,6 @@ function isV4(id) {
   return /^[a-z0-9]{8}-[a-z0-9]{4}-4[a-z0-9]{3}-[a-z0-9]{4}-[a-z0-9]{12}$/.test(id);
 }
 
-/**
- * Returns the action to create a task
- * @param  {String} text Task text
- * @return {Object}
- */
 function createTask(task) {
   if(typeof task !== 'string') {
     throw new Error(`params ${task}`);
@@ -31,12 +26,6 @@ function createTask(task) {
   };
 }
 
-/**
- * Returns the action to update a task
- * @param  {Object} updatedTask Object with task properties to update. It must
- * have a valid id.
- * @return {Object}
- */
 function updateTask(updatedTask) {
   if((typeof updatedTask !== 'object') || (!isV4(updatedTask.id))) {
     throw new Error(`params ${updatedTask}`);
@@ -47,11 +36,6 @@ function updateTask(updatedTask) {
   };
 }
 
-/**
- * Returns the action to delete a task
- * @param  {String} id Task id
- * @return {Object}
- */
 function deleteTask(id) {
   if(!isV4(id)) {
     throw new Error(`params ${id}`);
@@ -64,8 +48,22 @@ function deleteTask(id) {
   };
 }
 
+function moveTask(sourceId, targetId) {
+    if((!isV4(sourceId)) || (!isV4(targetId))) {
+        throw new Error(`params ${sourceId} ${targetId}`);
+    }
+    return {
+        type: actionTypes.MOVE_TASK,
+        payload: {
+            sourceId,
+            targetId,
+        },
+    };
+}
+
 export default {
   createTask,
   updateTask,
   deleteTask,
+  moveTask,
 };

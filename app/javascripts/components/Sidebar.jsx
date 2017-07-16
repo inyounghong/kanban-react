@@ -7,17 +7,16 @@ export default class Sidebar extends React.Component {
     constructor() {
         super();
         this.state = {
-            isEditing: false,
         }
         this.handleAddTask = this.handleAddTask.bind(this);
-        this.setToEditing = this.setToEditing.bind(this);
     }
     setToEditing() {
         this.setState({isEditing: true});
     }
     handleAddTask() {
-        this.props.addTask(this.props.selectedNote.id, "NEw Task Text");
+        this.props.addTask(this.props.selectedNote.id, "New Task");
     }
+
     renderSelectedNote() {
         return (
             <div className="note-title">
@@ -32,15 +31,12 @@ export default class Sidebar extends React.Component {
             </div>
         )
     }
-    renderEditing() {
-        return (
-            <input type="text"
-                autoFocus/>
-        )
-    }
     renderWithSelectedNote() {
         const tasks = this.props.tasks.map(task => (
-            <Task task={task} />
+            <Task task={task}
+                onUpdateTask={this.props.updateTask}
+                onDeleteTask={this.props.deleteTask}
+            />
         ));
 
         return (
@@ -49,8 +45,8 @@ export default class Sidebar extends React.Component {
 
                 <h2>Tasks</h2>
                 {tasks}
-                <div onClick={this.setToEditing}>
-                    {this.state.isEditing ? this.renderEditing() : "Add a Task"}
+                <div onClick={this.handleAddTask}>
+                    "Add a task"
                 </div>
             </div>
         )

@@ -53,6 +53,7 @@
     "watchify": "^3.5.0"
   },
   "dependencies": {
+    "classnames": "^2.2.5",
     "gul": "^1.0.0",
     "localforage": "^1.4.0",
     "react": "^15.0.1",
