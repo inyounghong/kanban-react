@@ -1,4 +1,4 @@
-import Task from '../components/list/Task.jsx';
+import Task from '../components/Task.jsx';
 import tasksActions from '../redux/actions/tasks';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';

@@ -1,4 +1,5 @@
 import React, { PropTypes } from 'react';
+import Editable from './Editable';
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -43,7 +44,9 @@ export default class Task extends React.Component {
         return connectDragSource(
             connectDropTarget(
                 <div className={classes} style={{opacity: isDragging ? 0 : 1 }}>
-                    {this.state.isEditing ? this.renderEditing() : this.renderDefault()}
+                    <Editable
+                        value={this.props.task.text}
+                    />
                 </div>
             )
         );

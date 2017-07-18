@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Task from '../../containers/Task.jsx';
+import Task from '../containers/Task.jsx';
 
 export default class Column extends React.Component {
 
@@ -30,7 +30,7 @@ export default class Column extends React.Component {
         return (
             connectDropTarget(
                 <div className="column col-sm-4">
-                    {this.props.name} 
+                    {this.props.name}
                     <div className="task-container">
                         {tasks}
                     </div>

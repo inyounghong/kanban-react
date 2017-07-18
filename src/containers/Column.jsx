@@ -1,4 +1,4 @@
-import Column from '../components/list/Column.jsx';
+import Column from '../components/Column.jsx';
 import tasksActions from '../redux/actions/tasks';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';

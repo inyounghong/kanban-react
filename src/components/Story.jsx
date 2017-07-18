@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
-import Task from '../../containers/Task.jsx';
-import Column from '../../containers/Column.jsx';
+import Task from '../containers/Task.jsx';
+import Column from '../containers/Column.jsx';
 
 export default class Story extends React.Component {
 

@@ -1,13 +1,9 @@
 import React, { PropTypes } from 'react';
-
-import lanesActions from '../redux/actions/lanes';
 import tasksActions from '../redux/actions/tasks';
 import appActions from '../redux/actions/app';
 import storiesActions from '../redux/actions/stories';
 import { connect } from 'react-redux';
-import Lanes from '../components/Lanes.jsx';
-import Sidebar from '../components/Sidebar.jsx';
-import List from '../components/list/List.jsx';
+import List from '../components/List.jsx';
 
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
