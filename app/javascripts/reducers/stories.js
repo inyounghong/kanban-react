@@ -84,11 +84,6 @@ export default function stories(state = defaultState, action) {
         const targetStory = state.find(story => story.id === target.storyId);
         const sourceTaskIndex = sourceStory.tasks.indexOf(source.taskId);
         const targetTaskIndex = (target.taskId == null) ? 0 : targetStory.tasks.indexOf(target.taskId);
-        console.log(sourceTaskIndex + "," + targetTaskIndex);
-
-        //   const updatedSourceTasks = sourceStory.tasks.filter(task => task !== source.taskId);
-        //   var updatedTargetTasks = targetStory.tasks;
-        //   updatedTargetTasks.push(source.taskId);
 
         // If source and target stories are same
         if (source.storyId === target.storyId) {
@@ -106,6 +101,7 @@ export default function stories(state = defaultState, action) {
                 return story;
             });
         }
+        
         // If source and target stories are different
         return state.map(story => {
             if (story.id === source.storyId) { // Remove from current story
