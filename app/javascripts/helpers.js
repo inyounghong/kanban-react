@@ -49,7 +49,6 @@ export function handleHover(targetProps, taskProps, targetType) {
 
         // Move task if target is another note, or moving into a new empty column
         if (target.taskId || !(sameColumn(target, source))) {
-            console.log("cols " + source.columnId + "->" + target.columnId);
             targetProps.moveTask(source, target);
         }
 

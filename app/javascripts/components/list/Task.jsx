@@ -1,12 +1,36 @@
 import React, { PropTypes } from 'react';
 
 export default class Task extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
-            isComplete: false,
+            isEditing: false,
         }
-        // this.toggleComplete = this.toggleComplete.bind(this);
+        this.setIsEditing = this.setIsEditing.bind(this);
+        this.renderDefault = this.renderDefault.bind(this);
+        this.renderEditing = this.renderEditing.bind(this);
+    }
+
+    setIsEditing() {
+        this.setState({isEditing: true});
+    }
+    renderDefault() {
+        return (
+            <div>
+                <div onClick={this.setIsEditing}>
+                    {this.props.task.text}
+                </div>
+                {/* <span onClick={this.setIsEditing}>Edit</span> */}
+            </div>
+        )
+    }
+    renderEditing() {
+        return (
+            <textarea
+                >
+                {this.props.task.text}
+            </textarea>
+        )
     }
 
     render() {
@@ -19,8 +43,7 @@ export default class Task extends React.Component {
         return connectDragSource(
             connectDropTarget(
                 <div className={classes} style={{opacity: isDragging ? 0 : 1 }}>
-                    {this.props.id}
-                    {this.props.task.text}
+                    {this.state.isEditing ? this.renderEditing() : this.renderDefault()}
                 </div>
             )
         );

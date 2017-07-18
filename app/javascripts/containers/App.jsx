@@ -55,7 +55,6 @@ class App extends React.Component {
     }
 
   render() {
-      console.log(this.props.stories);
     //   const selectedNote = this.props.notes.find(note => {
     //       return note.id === this.props.selectedNote;
     //   });
