@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
 
-import lanesActions from '../actions/lanes';
-import tasksActions from '../actions/tasks';
-import appActions from '../actions/app';
-import storiesActions from '../actions/stories';
+import lanesActions from '../redux/actions/lanes';
+import tasksActions from '../redux/actions/tasks';
+import appActions from '../redux/actions/app';
+import storiesActions from '../redux/actions/stories';
 import { connect } from 'react-redux';
 import Lanes from '../components/Lanes.jsx';
 import Sidebar from '../components/Sidebar.jsx';

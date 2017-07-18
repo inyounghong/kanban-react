@@ -1,7 +1,7 @@
 import Lane from '../components/Lane.jsx';
-import lanesActions from '../actions/lanes';
-import tasksActions from '../actions/tasks';
-import tagsActions from '../actions/tags';
+import lanesActions from '../redux/actions/lanes';
+import tasksActions from '../redux/actions/tasks';
+import tagsActions from '../redux/actions/tags';
 import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';

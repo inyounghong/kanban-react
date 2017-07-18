@@ -1,7 +1,7 @@
 import uuid from 'uuid';
-import * as actionTypes from '../constants/actionTypes';
-import * as itemTypes from '../constants/itemTypes';
-import { isV4 } from '../helpers';
+import * as actionTypes from '../../constants/actionTypes';
+import * as itemTypes from '../../constants/itemTypes';
+import { isV4 } from '../../helpers';
 
 function createTask(task) {
   if(typeof task !== 'string') {

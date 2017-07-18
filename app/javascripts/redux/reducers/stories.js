@@ -1,5 +1,5 @@
-import * as actionTypes from '../constants/actionTypes';
-import itemTypes from '../constants/itemTypes';
+import * as actionTypes from '../../constants/actionTypes';
+import itemTypes from '../../constants/itemTypes';
 import uuid from 'uuid';
 import update from 'react-addons-update';
 
@@ -101,7 +101,7 @@ export default function stories(state = defaultState, action) {
                 return story;
             });
         }
-        
+
         // If source and target stories are different
         return state.map(story => {
             if (story.id === source.storyId) { // Remove from current story

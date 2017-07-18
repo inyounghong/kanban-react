@@ -1,5 +1,5 @@
 import uuid from 'uuid';
-import * as actionTypes from '../constants/actionTypes';
+import * as actionTypes from '../../constants/actionTypes';
 
 function selectNote(noteId) {
   return {

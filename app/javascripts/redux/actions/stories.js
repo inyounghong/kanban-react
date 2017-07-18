@@ -1,6 +1,6 @@
 import uuid from 'uuid';
-import * as actionTypes from '../constants/actionTypes';
-import { isV4 } from '../helpers';
+import * as actionTypes from '../../constants/actionTypes';
+import { isV4 } from '../../helpers';
 
 
 function createStory(text) {

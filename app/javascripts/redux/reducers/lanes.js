@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants/actionTypes';
+import * as actionTypes from '../../constants/actionTypes';
 import uuid from 'uuid';
 import update from 'react-addons-update';
 

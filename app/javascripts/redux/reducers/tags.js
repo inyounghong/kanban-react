@@ -1,4 +1,4 @@
-import * as actionTypes from '../constants/actionTypes';
+import * as actionTypes from '../../constants/actionTypes';
 
 export default function tags(state = [], action) {
   switch (action.type) {

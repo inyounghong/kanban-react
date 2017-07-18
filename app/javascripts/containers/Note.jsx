@@ -1,6 +1,6 @@
 import Note from '../components/Note.jsx';
-import appActions from '../actions/app';
-import tasksActions from '../actions/tasks';
+import appActions from '../redux/actions/app';
+import tasksActions from '../redux/actions/tasks';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import * as itemTypes from '../constants/itemTypes';

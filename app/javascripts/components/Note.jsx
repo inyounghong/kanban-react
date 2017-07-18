@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
 import Tags from './Tags.jsx';
-import appActions from '../actions/app';
 
 export default class Note extends React.Component {
     constructor() {
