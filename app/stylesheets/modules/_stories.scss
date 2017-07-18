@@ -14,22 +14,3 @@
         font-size: 12px;
     }
 }
-
-.list-task-wrap {
-    background: #eee;
-    padding: 5px 0;
-
-    .list-task {
-        background: #fff;
-        border: 1px solid #ddd;
-        padding: 5px 10px;
-
-        &.complete {
-            color: #999;
-            text-decoration: line-through;
-        }
-        input[type="checkbox"] {
-            margin-right: 8px;
-        }
-    }
-}

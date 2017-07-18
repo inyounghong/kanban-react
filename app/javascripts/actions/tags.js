@@ -1,17 +1,6 @@
 import uuid from 'uuid';
 import * as actionTypes from '../constants/actionTypes';
-
-/**
- * Checks if String is valid v4 id
- * @param  {String} id Id to be checked
- * @return {Boolean}
- */
-function isV4(id) {
-  if(typeof id !== 'string') {
-    return false;
-  }
-  return /^[a-z0-9]{8}-[a-z0-9]{4}-4[a-z0-9]{3}-[a-z0-9]{4}-[a-z0-9]{12}$/.test(id);
-}
+import { isV4 } from '../helpers';
 
 /**
  * Returns the action to create a tag

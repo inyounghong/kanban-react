@@ -5,12 +5,12 @@ export const ATTACH_TO_LANE = 'ATTACH_TO_LANE';
 export const DETACH_FROM_LANE = 'DETACH_FROM_LANE';
 export const MOVE_LANE = 'MOVE_LANE';
 
-export const MOVE_NOTE = 'MOVE_NOTE';
-export const CREATE_NOTE = 'CREATE_NOTE';
-export const UPDATE_NOTE = 'UPDATE_NOTE';
-export const DELETE_NOTE = 'DELETE_NOTE';
-export const ADD_TASK_TO_NOTE = 'ADD_TASK_TO_NOTE';
-export const REMOVE_TASK_FROM_NOTE = 'REMOVE_TASK_FROM_NOTE';
+export const MOVE_STORY = 'MOVE_STORY';
+export const CREATE_STORY = 'CREATE_STORY';
+export const UPDATE_STORY = 'UPDATE_STORY';
+export const DELETE_STORY = 'DELETE_STORY';
+export const ADD_TASK_TO_STORY = 'ADD_TASK_TO_STORY';
+export const REMOVE_TASK_FROM_STORY = 'REMOVE_TASK_FROM_STORY';
 
 export const CREATE_TAG = 'CREATE_TAG';
 export const UPDATE_TAG = 'UPDATE_TAG';

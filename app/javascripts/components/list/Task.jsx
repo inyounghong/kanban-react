@@ -6,11 +6,7 @@ export default class Task extends React.Component {
         this.state = {
             isComplete: false,
         }
-        this.toggleComplete = this.toggleComplete.bind(this);
-    }
-
-    toggleComplete() {
-        this.setState({isComplete: !this.state.isComplete})
+        // this.toggleComplete = this.toggleComplete.bind(this);
     }
 
     render() {
@@ -18,15 +14,13 @@ export default class Task extends React.Component {
         const connectDropTarget = this.props.connectDropTarget;
         const isDragging = this.props.isDragging;
 
-        var classes = 'list-task' + (this.state.isComplete ? ' complete' : '');
+        var classes = 'task' + (this.state.isComplete ? ' complete' : '');
 
         return connectDragSource(
             connectDropTarget(
                 <div className={classes} style={{opacity: isDragging ? 0 : 1 }}>
-                    <label>
-                        <input type="checkbox"
-                        onClick={this.toggleComplete}/> {this.props.task.text}
-                    </label>
+                    {this.props.id}
+                    {this.props.task.text}
                 </div>
             )
         );

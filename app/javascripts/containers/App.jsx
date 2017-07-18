@@ -3,7 +3,7 @@ import React, { PropTypes } from 'react';
 import lanesActions from '../actions/lanes';
 import tasksActions from '../actions/tasks';
 import appActions from '../actions/app';
-import notesActions from '../actions/notes';
+import storiesActions from '../actions/stories';
 import { connect } from 'react-redux';
 import Lanes from '../components/Lanes.jsx';
 import Sidebar from '../components/Sidebar.jsx';
@@ -55,16 +55,18 @@ class App extends React.Component {
     }
 
   render() {
-      const selectedNote = this.props.notes.find(note => {
-          return note.id === this.props.selectedNote;
-      });
-      var selectedNoteTasks;
-      if (selectedNote) {
-          selectedNoteTasks = selectedNote.tasks.map(taskId =>
-              this.props.tasks.find(task => task.id === taskId));
-      }
-
+      console.log(this.props.stories);
+    //   const selectedNote = this.props.notes.find(note => {
+    //       return note.id === this.props.selectedNote;
+    //   });
+    //   var selectedNoteTasks;
+    //   if (selectedNote) {
+    //       selectedNoteTasks = selectedNote.tasks.map(taskId =>
+    //           this.props.tasks.find(task => task.id === taskId));
+    //   }
+// console.log(this.props);
     return (
+
       <div className="react-kanban">
         <div className="kanban">
             <h1 className="app-title">React.js Kanban</h1>
@@ -81,7 +83,7 @@ class App extends React.Component {
               Reset persisted store
             </button>
             <div className="container">
-                <Lanes
+                {/* <Lanes
                   lanes={this.props.lanes}
                   onEditLane={this.props.onEditLane}
                   onDeleteLane={this.props.onDeleteLane}
@@ -89,21 +91,22 @@ class App extends React.Component {
                   selectNote={this.selectNote}
                 />
                 {this.renderTagDisplay()}
-                {this.renderTagList()}
+                {this.renderTagList()} */}
 
                 <List
-                    notes={this.props.notes}
+                    stories={this.props.stories}
                     tasks={this.props.tasks}
+                    addTask={this.props.addTask}
                 />
             </div>
         </div>
-        <Sidebar
+        {/* <Sidebar
             selectedNote={selectedNote}
             tasks={selectedNoteTasks}
             addTask={this.props.addTask}
             updateTask={this.props.updateTask}
             deleteTask={this.handleDeleteTask}
-        />
+        /> */}
 
       </div>
     );
@@ -120,18 +123,18 @@ App.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  lanes: state.lanes,
-  tags: state.tags,
-  notes: state.notes,
-  selectedNote: state.app,
-  tasks: state.tasks
+    lanes: state.lanes,
+    tags: state.tags,
+    selectedNote: state.app,
+    tasks: state.tasks,
+    stories: state.stories,
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    addTask(noteId, taskText) {
-      const newTask = tasksActions.createTask(taskText);
+    addTask(storyId) {
+      const newTask = tasksActions.createTask("New Task");
       dispatch(newTask);
-      dispatch(notesActions.addTaskToNote(noteId, newTask.payload.id));
+      dispatch(storiesActions.addTaskToStory(storyId, newTask.payload.id));
     },
     updateTask(task) {
         dispatch(tasksActions.updateTask(task));

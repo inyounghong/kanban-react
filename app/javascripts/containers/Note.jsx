@@ -1,7 +1,6 @@
 import Note from '../components/Note.jsx';
 import appActions from '../actions/app';
 import tasksActions from '../actions/tasks';
-import notesActions from '../actions/notes';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import * as itemTypes from '../constants/itemTypes';
@@ -21,7 +20,6 @@ const noteSource = {
 
 const noteTarget = {
   hover(targetProps, monitor) {
-    //   console.log(targetProps);
     const targetId = targetProps.id;
     const sourceProps = monitor.getItem();
     const sourceId = sourceProps.id;

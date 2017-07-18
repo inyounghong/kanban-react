@@ -6,6 +6,7 @@ export default function tasks(state = [], action) {
       return state.concat(action.payload);
 
     case actionTypes.UPDATE_TASK:
+    console.log("updating task");
       return state.map(task => {
         if(task.id === action.payload.id) {
           return Object.assign({}, task, action.payload);

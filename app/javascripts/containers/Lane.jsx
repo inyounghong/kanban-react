@@ -1,6 +1,6 @@
 import Lane from '../components/Lane.jsx';
 import lanesActions from '../actions/lanes';
-import notesActions from '../actions/notes';
+import tasksActions from '../actions/tasks';
 import tagsActions from '../actions/tags';
 import { connect } from 'react-redux';
 import { DragSource } from 'react-dnd';

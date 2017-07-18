@@ -5,6 +5,8 @@ export default function app(state = null, action) {
     case actionTypes.SELECT_NOTE:
       return action.payload;
 
+
+
     default:
       return state;
   }

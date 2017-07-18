@@ -1,13 +1,13 @@
 import { combineReducers } from 'redux';
 import lanesReducer from './lanes';
-import notesReducer from './notes';
+import storiesReducer from './stories';
 import tagsReducer from './tags';
 import tasksReducer from './tasks';
 import appReducer from './app';
 
 export default combineReducers({
   lanes: lanesReducer,
-  notes: notesReducer,
+  stories: storiesReducer,
   tags: tagsReducer,
   tasks: tasksReducer,
   app: appReducer,

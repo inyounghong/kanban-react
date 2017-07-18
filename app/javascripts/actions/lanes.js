@@ -1,18 +1,7 @@
 import uuid from 'uuid';
+import { isV4 } from '../helpers';
 import * as actionTypes from '../constants/actionTypes';
 
-/**
- * Checks if string is valid v4 id
- * @param  {String} id Id to be checked
- * @return {Boolean}
- */
-function isV4(id) {
-  if(typeof id !== 'string') {
-    return false;
-  }
-
-  return /^[a-z0-9]{8}-[a-z0-9]{4}-4[a-z0-9]{3}-[a-z0-9]{4}-[a-z0-9]{12}$/.test(id);
-}
 
 /**
  * Returns a createLane action

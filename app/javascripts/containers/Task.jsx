@@ -1,16 +1,16 @@
 import Task from '../components/list/Task.jsx';
-import appActions from '../actions/app';
 import tasksActions from '../actions/tasks';
-import notesActions from '../actions/notes';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import * as itemTypes from '../constants/itemTypes';
 import { connect } from 'react-redux';
+import { handleHover } from '../helpers'
 
 const taskSource = {
     beginDrag(props) {
         const item = {
             id: props.id,
+            // handleMove: props.handleMove,
         };
         return item;
     },
@@ -20,34 +20,33 @@ const taskSource = {
 };
 
 const taskTarget = {
-  hover(targetProps, monitor) {
-    const targetId = targetProps.id;
-    const sourceProps = monitor.getItem();
-    const sourceId = sourceProps.id;
-    if(sourceId !== targetId) {
-      targetProps.onMoveListTask(sourceId, targetId);
-    }
-  },
+    hover(targetProps, monitor) {
+        handleHover(targetProps, monitor.getItem(), itemTypes.TASK);
+    },
 };
 
 const mapStateToProps = (state) => ({
     // selectedNote: state.app,
+    allStories: state.stories,
+    allTasks: state.tasks,
 });
 const mapDispatchToProps = (dispatch) => ({
-    onMoveListTask(sourceId, targetId) {
-        dispatch(tasksActions.moveTask(sourceId, targetId));
+    moveTask(source, target) {
+        dispatch(tasksActions.moveTask(source, target));
     },
+    updateTask(task) {
+        dispatch(tasksActions.updateTask(task));
+    }
 });
 
 const collectDragSource = (connect, monitor) => ({
-  connectDragSource: connect.dragSource(),
-  isDragging: monitor.isDragging(),
+    connectDragSource: connect.dragSource(),
+    isDragging: monitor.isDragging(),
 });
 
 const collectDropTarget = (connect) => ({
-  connectDropTarget: connect.dropTarget(),
+    connectDropTarget: connect.dropTarget(),
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(
     DragSource(itemTypes.TASK, taskSource, collectDragSource)(

@@ -1,5 +1,5 @@
 @import 'variables';
-@import 'third-party/normalize';
+@import 'third-party/bootstrap';
 
 @import 'base/base';
 @import 'layout/layout';
@@ -8,3 +8,4 @@
 @import 'modules/notes';
 @import 'modules/tasks';
 @import 'modules/stories';
+@import 'modules/columns';

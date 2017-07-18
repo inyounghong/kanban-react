@@ -4,19 +4,19 @@ import Story from './Story.jsx';
 export default class List extends React.Component {
 
     render() {
-        const allNotes = this.props.notes;
         const allTasks = this.props.tasks;
-        
-        const stories = allNotes.map(note => {
-            const noteTasks = note.tasks
+
+        const stories = this.props.stories.map(story => {
+            const storyTasks = story.tasks
                 .map(id => allTasks.find(task => task.id === id))
                 .filter(task => task); // filter out undefined tasks
 
             return (
                 <Story
-                    note={note}
-                    key={note.id}
-                    tasks={noteTasks}
+                    story={story}
+                    key={story.id}
+                    tasks={storyTasks}
+                    addTask={this.props.addTask}
                 />
             )
         });
