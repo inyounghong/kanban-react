@@ -1,5 +1,6 @@
 import Task from '../components/Task.jsx';
 import tasksActions from '../redux/actions/tasks';
+import storyActions from '../redux/actions/stories';
 import { DragSource } from 'react-dnd';
 import { DropTarget } from 'react-dnd';
 import * as itemTypes from '../constants/itemTypes';
@@ -32,10 +33,18 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
     moveTask(source, target) {
+        console.log("moving");
         dispatch(tasksActions.moveTask(source, target));
     },
     updateTask(task) {
         dispatch(tasksActions.updateTask(task));
+    },
+    deleteTask(taskId, storyId) {
+        const act = tasksActions.deleteTask(taskId);
+        console.log(act);
+        dispatch(act);
+        console.log("deleted task");
+        // dispatch(storyActions.removeTaskFromStory(storyId, taskId))
     }
 });
 

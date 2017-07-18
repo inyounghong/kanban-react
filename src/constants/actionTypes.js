@@ -19,6 +19,6 @@ export const DELETE_TAG = 'DELETE_TAG';
 export const CREATE_TASK = 'CREATE_TASK';
 export const UPDATE_TASK = 'UPDATE_TASK';
 export const DELETE_TASK = 'DELETE_TASK';
-export const MOVE_TASK = 'DELETE_TASK';
+export const MOVE_TASK = 'MOVE_TASK';
 
 export const SELECT_NOTE = 'SELECT_NOTE';

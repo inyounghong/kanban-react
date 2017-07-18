@@ -22,6 +22,7 @@ export default class Column extends React.Component {
                     id={task.id}
                     task={task}
                     key={task.id}
+                    storyId={this.props.id.split("_")[0]}
                     // handleMove={this.handleMove}
                 />
             )

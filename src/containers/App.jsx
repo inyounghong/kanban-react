@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import tasksActions from '../redux/actions/tasks';
 import appActions from '../redux/actions/app';
-import storiesActions from '../redux/actions/stories';
+import storyActions from '../redux/actions/stories';
 import { connect } from 'react-redux';
 import List from '../components/List.jsx';
 
@@ -92,6 +92,7 @@ class App extends React.Component {
                     stories={this.props.stories}
                     tasks={this.props.tasks}
                     addTask={this.props.addTask}
+                    updateStory={this.props.updateStory}
                 />
             </div>
         </div>
@@ -120,16 +121,16 @@ App.propTypes = {
 const mapStateToProps = (state) => ({
     lanes: state.lanes,
     tags: state.tags,
-    selectedNote: state.app,
     tasks: state.tasks,
     stories: state.stories,
 });
 
 const mapDispatchToProps = (dispatch) => ({
+    // Tasks
     addTask(storyId) {
-      const newTask = tasksActions.createTask("New Task");
-      dispatch(newTask);
-      dispatch(storiesActions.addTaskToStory(storyId, newTask.payload.id));
+        const newTask = tasksActions.createTask("New Task");
+        dispatch(newTask);
+        dispatch(storiesActions.addTaskToStory(storyId, newTask.payload.id));
     },
     updateTask(task) {
         dispatch(tasksActions.updateTask(task));
@@ -137,6 +138,11 @@ const mapDispatchToProps = (dispatch) => ({
     deleteTask(noteId, taskId) {
         dispatch(tasksActions.deleteTask(taskId));
         dispatch(notesActions.removeTaskFromNote(noteId, taskId))
+    },
+
+    // Stories
+    updateStory(story) {
+        dispatch(storyActions.updateStory(story));
     },
 
   onCreateLane() {

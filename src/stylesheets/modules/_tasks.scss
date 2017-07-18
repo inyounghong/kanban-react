@@ -5,5 +5,13 @@
     background: #fff;
     border: 1px solid #ddd;
     padding: 5px 10px;
-
+    &.dragging {
+        background: #ddd;
+        color: #ddd;
+    }
+    textarea:focus{
+        // background: #000;
+        outline: none;
+        border: none;
+    }
 }

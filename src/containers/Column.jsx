@@ -9,6 +9,7 @@ import { handleHover } from '../helpers'
 
 const columnTarget = {
     hover(targetProps, monitor) {
+        // console.log(targetProps.dispatch);
         handleHover(targetProps, monitor.getItem(), itemTypes.COLUMN);
     },
 };

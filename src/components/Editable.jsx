@@ -1,71 +1,91 @@
 import React, { PropTypes } from 'react';
+import * as itemTypes from '../constants/itemTypes';
 
 export default class Editable extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.state = {
             isEditing: false,
+            text: props.value,
         }
         this.setIsEditing = this.setIsEditing.bind(this);
         this.handleFinishEdit = this.handleFinishEdit.bind(this);
         this.selectToEnd = this.selectToEnd.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     setIsEditing() {
         this.setState({isEditing: true});
+    }
+    handleChange(e) {
+        this.setState({text: e.target.value.trim()});
     }
 
     handleFinishEdit(e) {
         if((e.type === 'keypress') && (e.key !== 'Enter')) {
             return;
         }
-        const value = e.target.value;
-        if(this.props.onEdit && value.trim().length) {
-            this.props.onEdit(this.props.id, value);
+        this.setState({isEditing: false});
+        if(this.props.onEdit && this.state.text.length) {
+            this.props.onEdit(this.state.text);
         }
     }
 
-  selectToEnd(input) {
-    if(input) {
-      input.selectionEnd = this.props.value.length;
+    selectToEnd(input) {
+        if(input) {
+            input.selectionEnd = this.props.value.length;
+        }
     }
-  }
 
-  renderEdit() {
-    return (
-        <textarea
-          autoFocus
-          className="editing"
-          ref={this.selectToEnd}
-          onBlur={this.handleFinishEdit}
-          onKeyPress={this.handleFinishEdit}
-        >
-            {this.props.value}
-        </textarea>
-    );
-  }
+    renderEdit() {
+        if (this.props.type === itemTypes.TASK) {
+            return (
+                <textarea
+                    autoFocus
+                    className="editing"
+                    ref={this.selectToEnd}
+                    onBlur={this.handleFinishEdit}
+                    onKeyPress={this.handleFinishEdit}
+                    onChange={this.handleChange}
+                    >
+                    {this.state.text}
+                </textarea>
+            );
+        } else if (this.props.type === itemTypes.STORY) {
+            return (
+                <input
+                    type="text"
+                    autoFocus
+                    className="editing"
+                    ref={this.selectToEnd}
+                    onBlur={this.handleFinishEdit}
+                    onKeyPress={this.handleFinishEdit}
+                    onChange={this.handleChange}
+                    value={this.state.text}
+                />
+            )
+        }
 
+    }
 
-  renderValue() {
-    return (
-        <span>
-            <div onClick={this.setIsEditing}>{this.props.value}</div>
-        </span>
-    );
-  }
+    renderDefault() {
+        const className = (this.props.type === itemTypes.STORY) ? "story-name" : "";
+        return (
+            <span>
+                <div
+                    onClick={this.setIsEditing}
+                    className={className}
+                    >
+                    {this.props.value}
+                </div>
+            </span>
+        );
+    }
 
     render() {
         if(this.state.isEditing) {
             return this.renderEdit();
         }
-        return this.renderValue();
+        return this.renderDefault();
     }
 }
-
-Editable.propTypes = {
-  editing: PropTypes.bool,
-  id: PropTypes.string.isRequired,
-  onEdit: PropTypes.func.isRequired,
-  onValueClick: PropTypes.func.isRequired,
-  value: PropTypes.string.isRequired,
-};

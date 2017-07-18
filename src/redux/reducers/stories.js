@@ -63,7 +63,6 @@ export default function stories(state = defaultState, action) {
       case actionTypes.REMOVE_TASK_FROM_STORY: {
           const storyId = action.payload.storyId;
           const taskId = action.payload.taskId;
-          let storyIndex;
 
           return state.map(story => {
             if(story.id === storyId) {
@@ -77,7 +76,6 @@ export default function stories(state = defaultState, action) {
 
 
     case actionTypes.MOVE_TASK: {
-
         const source = action.payload.source;
         const target = action.payload.target;
         const sourceStory = state.find(story => story.id === source.storyId);
