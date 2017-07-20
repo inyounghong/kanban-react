@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import Story from './Story.jsx';
+import Story from '../containers/Story';
 
 export default class List extends React.Component {
 
@@ -10,15 +10,12 @@ export default class List extends React.Component {
             const storyTasks = story.tasks
                 .map(id => allTasks.find(task => task.id === id))
                 .filter(task => task); // filter out undefined tasks
-                console.log(this.props);
             return (
 
                 <Story
                     story={story}
                     key={story.id}
                     tasks={storyTasks}
-                    addTask={this.props.addTask}
-                    updateStory={this.props.updateStory}
                 />
             )
         });

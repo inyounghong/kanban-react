@@ -62,17 +62,17 @@ function addTaskToStory(storyId, taskId) {
   };
 }
 
-function removeTaskFromStory(storyId, taskId) {
-  if((!isV4(storyId)) || (!isV4(taskId))) {
-    throw new Error(`params ${storyId} ${taskId}`);
-  }
-  return {
-    type: actionTypes.REMOVE_TASK_FROM_STORY,
-    payload: {
-      storyId,
-      taskId,
-    },
-  };
+function removeTaskFromStory(taskId, storyId) {
+    if((!isV4(storyId)) || (!isV4(taskId))) {
+        throw new Error(`params ${storyId} ${taskId}`);
+    }
+    return {
+        type: actionTypes.REMOVE_TASK_FROM_STORY,
+        payload: {
+            taskId,
+            storyId,
+        },
+    };
 }
 
 export default {

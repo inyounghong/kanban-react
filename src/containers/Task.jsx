@@ -11,6 +11,7 @@ const taskSource = {
     beginDrag(props) {
         const item = {
             id: props.id,
+            isColumnView: props.isColumnView
             // handleMove: props.handleMove,
         };
         return item;
@@ -30,21 +31,18 @@ const mapStateToProps = (state) => ({
     // selectedNote: state.app,
     allStories: state.stories,
     allTasks: state.tasks,
+    isColumnView: state.app.isColumnView,
 });
 const mapDispatchToProps = (dispatch) => ({
     moveTask(source, target) {
-        console.log("moving");
         dispatch(tasksActions.moveTask(source, target));
     },
     updateTask(task) {
         dispatch(tasksActions.updateTask(task));
     },
     deleteTask(taskId, storyId) {
-        const act = tasksActions.deleteTask(taskId);
-        console.log(act);
-        dispatch(act);
-        console.log("deleted task");
-        // dispatch(storyActions.removeTaskFromStory(storyId, taskId))
+        dispatch(tasksActions.deleteTask(taskId));
+        dispatch(storyActions.removeTaskFromStory(taskId, storyId));
     }
 });
 

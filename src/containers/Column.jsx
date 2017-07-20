@@ -17,6 +17,7 @@ const columnTarget = {
 const mapStateToProps = (state) => ({
     allStories: state.stories,
     allTasks: state.tasks,
+    isColumnView: state.app.isColumnView,
 });
 
 const mapDispatchToProps = (dispatch) => ({

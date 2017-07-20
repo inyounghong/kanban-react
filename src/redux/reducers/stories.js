@@ -6,8 +6,13 @@ import update from 'react-addons-update';
 const defaultState = [
     {
         id: uuid.v4(),
-        name: 'Story 1',
-        tasks: [],
+        name: 'Journal Creator Updates',
+        tasks: [
+            "1da00e1e-6609-48d9-908e-6efcac1463a6",
+            "83b454a9-64a6-4e83-bdbd-fb5f7281753e",
+            "1ffe9e08-3481-49af-ab4e-76db368df025",
+            "fa774290-9b47-47e1-9eac-88c721092350",
+        ],
     },
     {
         id: uuid.v4(),
@@ -60,19 +65,18 @@ export default function stories(state = defaultState, action) {
         });
       }
 
-      case actionTypes.REMOVE_TASK_FROM_STORY: {
-          const storyId = action.payload.storyId;
-          const taskId = action.payload.taskId;
-
-          return state.map(story => {
+    case actionTypes.REMOVE_TASK_FROM_STORY: {
+        const storyId = action.payload.storyId;
+        const taskId = action.payload.taskId;
+        return state.map(story => {
             if(story.id === storyId) {
-              return Object.assign({}, story, {
-                tasks: story.tasks.filter(id => id !== taskId),
-              });
+                return Object.assign({}, story, {
+                    tasks: story.tasks.filter(id => id !== taskId),
+                });
             }
             return story;
-          });
-        }
+        });
+    }
 
 
     case actionTypes.MOVE_TASK: {

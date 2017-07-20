@@ -1,17 +1,47 @@
 .text-edit {
     background: #eee;
 }
+
 .task {
     background: #fff;
     border: 1px solid #ddd;
     padding: 5px 10px;
+    position: relative;
+    min-height: 50px;
+
+    &:hover {
+        .edit {
+            display: block;
+        }
+    }
+
     &.dragging {
         background: #ddd;
         color: #ddd;
     }
+
+    &.task-condensed {
+        min-height: auto!important;
+    }
+
+    .edit {
+        display: none;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+    }
+
     textarea:focus{
         // background: #000;
         outline: none;
         border: none;
     }
+
+}
+
+.edit-menu {
+    position: absolute;
+    right: -50px;
+    width: 50px;
+    border: 1px solid #ddd;
 }

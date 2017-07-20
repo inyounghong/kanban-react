@@ -12,12 +12,13 @@ class App extends React.Component {
 
     constructor() {
         super();
-        this.state = {
-            editingNote: null,
-        }
         this.addTagToNote = this.addTagToNote.bind(this);
         this.setEditingNote = this.setEditingNote.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
+        this.handleToggleView = this.handleToggleView.bind(this);
+    }
+    handleToggleView() {
+        this.props.handleToggleView(!this.props.app.isColumnView);
     }
     addTagToNote() {
         console.log("adding tag to note");
@@ -50,129 +51,61 @@ class App extends React.Component {
         )
     }
 
-  render() {
-    //   const selectedNote = this.props.notes.find(note => {
-    //       return note.id === this.props.selectedNote;
-    //   });
-    //   var selectedNoteTasks;
-    //   if (selectedNote) {
-    //       selectedNoteTasks = selectedNote.tasks.map(taskId =>
-    //           this.props.tasks.find(task => task.id === taskId));
-    //   }
-// console.log(this.props);
-    return (
+    render() {
+        console.log(this.props);
+        return (
+            <div className="kanban">
+                <h1 className="app-title">React.js Kanban</h1>
 
-      <div className="react-kanban">
-        <div className="kanban">
-            <h1 className="app-title">React.js Kanban</h1>
-            <button
-              className="add-lane"
-              onClick={this.props.onCreateLane}
-            >
-              + Lane
-            </button>
-            <button
-              className="reset-store"
-              onClick={this.props.onReset}
-            >
-              Reset persisted store
-            </button>
-            <div className="container">
-                {/* <Lanes
-                  lanes={this.props.lanes}
-                  onEditLane={this.props.onEditLane}
-                  onDeleteLane={this.props.onDeleteLane}
-                  onMoveLane={this.props.onMoveLane}
-                  selectNote={this.selectNote}
-                />
-                {this.renderTagDisplay()}
-                {this.renderTagList()} */}
+                <div className="container">
+                    <div className="tab-wrap">
+                        <div
+                            className="tab"
+                            style={{background: (this.props.app.isColumnView) ? "#ddd" : "none"}}
+                            onClick={this.handleToggleView}>
+                            Column View
+                        </div>
+                        <div className="tab"
+                            style={{background: (!this.props.app.isColumnView) ? "#ddd" : "none"}}
+                            onClick={this.handleToggleView}>
+                            Story View
+                        </div>
+                    </div>
 
-                <List
-                    stories={this.props.stories}
-                    tasks={this.props.tasks}
-                    addTask={this.props.addTask}
-                    updateStory={this.props.updateStory}
-                />
+                    <div
+                        className="reset-store"
+                        onClick={this.props.onReset} >
+                        Reset persisted store
+                    </div>
+                    <List
+                        stories={this.props.stories}
+                        tasks={this.props.tasks}
+                    />
+                </div>
+
             </div>
-        </div>
-        {/* <Sidebar
-            selectedNote={selectedNote}
-            tasks={selectedNoteTasks}
-            addTask={this.props.addTask}
-            updateTask={this.props.updateTask}
-            deleteTask={this.handleDeleteTask}
-        /> */}
-
-      </div>
-    );
-  }
-}
-
-App.propTypes = {
-  lanes: PropTypes.array.isRequired,
-  onCreateLane: PropTypes.func.isRequired,
-  onDeleteLane: PropTypes.func.isRequired,
-  onEditLane: PropTypes.func.isRequired,
-  onMoveLane: PropTypes.func.isRequired,
-  onReset: PropTypes.func.isRequired,
-};
-
-const mapStateToProps = (state) => ({
-    lanes: state.lanes,
-    tags: state.tags,
-    tasks: state.tasks,
-    stories: state.stories,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    // Tasks
-    addTask(storyId) {
-        const newTask = tasksActions.createTask("New Task");
-        dispatch(newTask);
-        dispatch(storiesActions.addTaskToStory(storyId, newTask.payload.id));
-    },
-    updateTask(task) {
-        dispatch(tasksActions.updateTask(task));
-    },
-    deleteTask(noteId, taskId) {
-        dispatch(tasksActions.deleteTask(taskId));
-        dispatch(notesActions.removeTaskFromNote(noteId, taskId))
-    },
-
-    // Stories
-    updateStory(story) {
-        dispatch(storyActions.updateStory(story));
-    },
-
-  onCreateLane() {
-    dispatch(lanesActions.createLane('Active'));
-  },
-
-  onEditLane(laneId, name) {
-    const updatedLane = {
-      id: laneId,
-    };
-
-    if(name) {
-      updatedLane.name = name;
-      updatedLane.editing = false;
-    } else {
-      updatedLane.editing = true;
+        );
+        }
     }
 
-    dispatch(lanesActions.updateLane(updatedLane));
-  },
 
-  onDeleteLane(laneId) {
-    dispatch(lanesActions.deleteLane(laneId));
-  },
+const mapStateToProps = (state) => (state);
 
-  onMoveLane(sourceId, targetId) {
-    dispatch(lanesActions.move('lane', sourceId, targetId));
-  },
+//{
+//     tags: state.tags,
+//     tasks: state.tasks,
+//     stories: state.stories,
+// }
+
+const mapDispatchToProps = (dispatch) => ({
+
+    // handle View
+    handleToggleView(isColumnView) {
+        dispatch(appActions.setIsColumnView(isColumnView));
+    }
+
 });
 
 export default DragDropContext(HTML5Backend)(
-  connect(mapStateToProps, mapDispatchToProps)(App)
+    connect(mapStateToProps, mapDispatchToProps)(App)
 );

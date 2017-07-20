@@ -1,0 +1,16 @@
+.tag-wrap {
+    display: inline-block;
+    position: absolute;
+    text-align: right;
+    top: 5px;
+    right: 50px;
+}
+
+.tag {
+    display: inline-block;
+    color: #fff;
+    width: 50px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 12px;
+}

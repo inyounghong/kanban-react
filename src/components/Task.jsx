@@ -1,6 +1,8 @@
 import React, { PropTypes } from 'react';
 import Editable from './Editable';
+import Tags from './Tags';
 import * as itemTypes from '../constants/itemTypes';
+import * as columnTypes from '../constants/columnTypes';
 
 export default class Task extends React.Component {
     constructor(props) {
@@ -37,7 +39,6 @@ export default class Task extends React.Component {
                 <div onClick={this.setIsEditing}>
                     {this.props.task.text}
                 </div>
-                {/* <span onClick={this.setIsEditing}>Edit</span> */}
             </div>
         )
     }
@@ -52,6 +53,7 @@ export default class Task extends React.Component {
     generateClasses(isDragging) {
         var classes = 'task';
         classes += (isDragging ? ' dragging' : '');
+        classes += (this.props.isColumnView ? '' : ' task-condensed');
         return classes;
     }
     toggleEditMenu() {
@@ -59,7 +61,7 @@ export default class Task extends React.Component {
     }
     renderEditMenu() {
         return (
-            <div className="editMenu">
+            <div className="edit-menu">
                 <div onClick={this.handleDelete}>
                     Delete
                 </div>
@@ -71,6 +73,7 @@ export default class Task extends React.Component {
         const connectDragSource = this.props.connectDragSource;
         const connectDropTarget = this.props.connectDropTarget;
         const isDragging = this.props.isDragging;
+        const tags = [this.props.task.status];
 
         return connectDragSource(
             connectDropTarget(
@@ -80,7 +83,13 @@ export default class Task extends React.Component {
                         type={itemTypes.TASK}
                         onEdit={this.handleUpdate}
                     />
-                    <div onClick={this.toggleEditMenu}>(Edit)</div>
+                    {/* {this.props.task.id} */}
+                    <Tags tags={tags} />
+                    <div
+                        onClick={this.toggleEditMenu}
+                        className="edit">
+                        (Edit)
+                    </div>
                     { this.state.showEditMenu ? this.renderEditMenu() : null}
                 </div>
             )

@@ -28,9 +28,11 @@ export default class Column extends React.Component {
             )
         })
 
+        const classes = (this.props.isColumnView) ? "column col-sm-4" : "column";
+
         return (
             connectDropTarget(
-                <div className="column col-sm-4">
+                <div className={classes}>
                     {this.props.name}
                     <div className="task-container">
                         {tasks}

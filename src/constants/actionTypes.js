@@ -22,3 +22,4 @@ export const DELETE_TASK = 'DELETE_TASK';
 export const MOVE_TASK = 'MOVE_TASK';
 
 export const SELECT_NOTE = 'SELECT_NOTE';
+export const SET_IS_COLUMN_VIEW = 'SET_IS_COLUMN_VIEW';

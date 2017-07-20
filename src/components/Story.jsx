@@ -3,6 +3,7 @@ import Task from '../containers/Task.jsx';
 import Column from '../containers/Column.jsx';
 import Editable from './Editable';
 import * as itemTypes from '../constants/itemTypes';
+import * as columnTypes from '../constants/columnTypes';
 
 export default class Story extends React.Component {
 
@@ -13,6 +14,8 @@ export default class Story extends React.Component {
         }
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
+        this.renderColumns = this.renderColumns.bind(this);
+        this.renderTasks = this.renderTasks.bind(this);
     }
     handleAddTask() {
         this.props.addTask(this.props.story.id);
@@ -25,23 +28,50 @@ export default class Story extends React.Component {
         this.props.updateStory(updatedStory);
     }
 
-    render() {
-        const allTasks = this.props.tasks;
+    renderColumns() {
+        const storyTasks = this.props.tasks;
         const storyId = this.props.story.id;
-        const columnNames = ["Todo", "Testing", "Done"];
+        const columnInfo = [
+            {name: "Todo", id: columnTypes.TODO},
+            {name: "Testing", id: columnTypes.TESTING},
+            {name: "Complete", id: columnTypes.COMPLETE},
+        ];
 
         // Generate three columns
-        const columns = columnNames.map(function(name, i) {
-            const tasks = allTasks.filter(task => task.status === i);
+        const columns = columnInfo.map(function(col) {
+            const tasks = storyTasks.filter(task => task.status === col.id);
             return (
                 <Column name={name}
                     tasks={tasks}
-                    key={storyId + "_" + i}
-                    id={storyId + "_" + i}
+                    key={storyId + "_" + col.id}
+                    id={storyId + "_" + col.id}
                 />
             )}
         );
 
+        return (
+            <div className="row">
+                {columns}
+            </div>
+        )
+    }
+    renderTasks() {
+        const storyTasks = this.props.tasks;
+        const storyId = this.props.story.id;
+
+        return (
+            <Column name={null}
+                tasks={storyTasks}
+                key={storyId + "_" + columnTypes.NONE}
+                id={storyId + "_" + columnTypes.NONE}
+            />
+        );
+
+        // return (
+        //     <div>Just the tasks for this story</div>
+        // )
+    }
+    render() {
         return (
             <div className="story">
                 <Editable
@@ -53,9 +83,7 @@ export default class Story extends React.Component {
                     onClick={this.handleAddTask}>(+)</span>
                 <span className="task-count">{this.props.tasks.length} Tasks</span>
 
-                <div className="row">
-                    {columns}
-                </div>
+                {this.props.isColumnView ? this.renderColumns() : this.renderTasks()}
             </div>
         );
     }

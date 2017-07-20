@@ -71,14 +71,12 @@ export default class Editable extends React.Component {
     renderDefault() {
         const className = (this.props.type === itemTypes.STORY) ? "story-name" : "";
         return (
-            <span>
-                <div
-                    onClick={this.setIsEditing}
-                    className={className}
-                    >
-                    {this.props.value}
-                </div>
-            </span>
+            <div
+                onClick={this.setIsEditing}
+                className={className}
+                >
+                {this.props.value}
+            </div>
         );
     }
 

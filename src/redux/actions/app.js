@@ -8,6 +8,14 @@ function selectNote(noteId) {
   };
 }
 
+function setIsColumnView(isColumnView) {
+    return {
+        type: actionTypes.SET_IS_COLUMN_VIEW,
+        payload: isColumnView,
+    }
+}
+
 export default {
-  selectNote,
+    selectNote,
+    setIsColumnView,
 };

@@ -15,10 +15,6 @@ function getStoryByTask(stories, id) {
     return stories.find(story => story.tasks.indexOf(id) > -1);
 }
 
-function sameColumn(target, source) {
-    return (target.storyId === source.storyId && target.columnId == source.columnId);
-}
-
 /*
  * Handles drag and drop for COLUMN and TASK
  */
@@ -47,13 +43,13 @@ export function handleHover(targetProps, taskProps, targetType) {
             }
         }
 
-        // Move task if target is another note, or moving into a new empty column
-        if (target.taskId || !(sameColumn(target, source))) {
+        // Move task if target is another note, moving to diff story
+        if (target.taskId || target.storyId !== source.storyId) {
             targetProps.moveTask(source, target);
         }
 
-        // Update columns if needed
-        if (target.columnId !== source.columnId) {
+        // Update columns if isColumnView and cols are different
+        if (taskProps.isColumnView && target.columnId !== source.columnId) {
             const updatedTask = Object.assign({}, sourceTask, {
                 status: target.columnId,
             });
