@@ -10,12 +10,16 @@ export default class Story extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            isOpen: true,
         }
         this.handleAddTask = this.handleAddTask.bind(this);
         this.handleUpdate = this.handleUpdate.bind(this);
         this.renderColumns = this.renderColumns.bind(this);
         this.renderTasks = this.renderTasks.bind(this);
+        this.toggleIsOpen = this.toggleIsOpen.bind(this);
+    }
+    toggleIsOpen() {
+        this.setState({isOpen: !this.state.isOpen});
     }
     handleAddTask() {
         this.props.addTask(this.props.story.id);
@@ -72,18 +76,23 @@ export default class Story extends React.Component {
         // )
     }
     render() {
+        const arrowClass = "fa fa-fw fa-chevron-" + (this.state.isOpen ? "down" : "right");
         return (
             <div className="story">
+                <i className={arrowClass}
+                    onClick={this.toggleIsOpen}></i>
                 <Editable
                     value={this.props.story.name}
                     type={itemTypes.STORY}
                     onEdit={this.handleUpdate}
                 />
+                <span className="task-count">{this.props.tasks.length} Tasks</span>
                 <span className="add-button"
                     onClick={this.handleAddTask}>(+)</span>
-                <span className="task-count">{this.props.tasks.length} Tasks</span>
 
-                {this.props.isColumnView ? this.renderColumns() : this.renderTasks()}
+                <div className="column-container" style={{display: this.state.isOpen ? 'block' : 'none'}}>
+                    {this.props.isColumnView ? this.renderColumns() : this.renderTasks()}
+                </div>
             </div>
         );
     }

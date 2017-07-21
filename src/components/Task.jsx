@@ -85,11 +85,8 @@ export default class Task extends React.Component {
                     />
                     {/* {this.props.task.id} */}
                     <Tags tags={tags} />
-                    <div
-                        onClick={this.toggleEditMenu}
-                        className="edit">
-                        (Edit)
-                    </div>
+                    <i className="fa fa-fw fa-pencil"
+                        onClick={this.toggleEditMenu}></i>
                     { this.state.showEditMenu ? this.renderEditMenu() : null}
                 </div>
             )

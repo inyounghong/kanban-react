@@ -13,15 +13,15 @@ export default class Tags extends React.Component {
             null,
             {
                 name: "Todo",
-                color: "blue",
+                color: "#2caeff",
             },
             {
                 name: "Testing",
-                color: "yellow",
+                color: "#ff9d00",
             },
             {
-                name: "done",
-                color: "green",
+                name: "Done",
+                color: "#57dc39",
             },
         ]
 

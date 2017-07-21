@@ -31,7 +31,7 @@
     "fonts": {
       "src": "src/fonts",
       "dest": "fonts",
-      "extensions": ["woff2", "woff", "eot", "ttf", "svg"]
+      "extensions": ["woff2", "woff", "eot", "ttf", "svg", "otf"]
     },
 
     "html": {

@@ -63,12 +63,12 @@ class App extends React.Component {
                             className="tab"
                             style={{background: (this.props.app.isColumnView) ? "#ddd" : "none"}}
                             onClick={this.handleToggleView}>
-                            Column View
+                            <i className="fa fa-columns"></i> Column View
                         </div>
                         <div className="tab"
                             style={{background: (!this.props.app.isColumnView) ? "#ddd" : "none"}}
                             onClick={this.handleToggleView}>
-                            Story View
+                            <i className="fa fa-align-justify"></i> Story View
                         </div>
                     </div>
 

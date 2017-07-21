@@ -1,7 +1,9 @@
 import uuid from 'uuid';
 import * as actionTypes from '../../constants/actionTypes';
 import * as itemTypes from '../../constants/itemTypes';
+import * as columnTypes from '../../constants/columnTypes';
 import { isV4 } from '../../helpers';
+
 
 function createTask(task) {
   if(typeof task !== 'string') {
@@ -12,7 +14,7 @@ function createTask(task) {
     payload: {
       id: uuid.v4(),
       text: task,
-      status: 0,
+      status: columnTypes.TODO,
     },
   };
 }

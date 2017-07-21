@@ -12,7 +12,6 @@ function createStory(text) {
     type: actionTypes.CREATE_STORY,
     payload: {
       id: uuid.v4(),
-      editing: false,
       text,
       tags: [],
       tasks: [],

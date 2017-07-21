@@ -8,9 +8,34 @@
     .story-name {
         font-weight: bold;
         font-size: 16px;
+        display: inline-block;
+        padding: 0 3px;
+        &:hover {
+            outline: 1px solid #ddd;
+        }
     }
     .task-count {
-        float: right;
+        margin-left: 20px;
         font-size: 12px;
     }
+
+    input {
+        font-weight: bold;
+        padding: 2px 5px;
+        outline: 1px solid #ddd;
+    }
+}
+
+.column-container {
+    margin-top: 8px;
+}
+
+.fa-chevron-right, .fa-chevron-down {
+    width: 30px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.fa-chevron-down {
+    position: relative;
+    top: -2px;
 }

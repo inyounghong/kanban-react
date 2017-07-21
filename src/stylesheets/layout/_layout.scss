@@ -9,25 +9,21 @@
     margin-right: 300px;
 }
 
-.sidebar {
-    width: 300px;
-    padding: 30px;
-    position: absolute;
-    right: 0;
-    top: 0;
-    border-left: 1px solid #ddd;
-    height: 100%;
-}
-
 .container {
     padding: 20px 50px;
 }
 
 .tab-wrap {
-
+    text-align: center;
     .tab {
         display: inline-block;
         padding: 5px 10px;
         margin: 5px;
+        border-radius: 3px;
+        cursor: pointer;
+    }
+
+    i {
+        margin-right: 5px;
     }
 }
