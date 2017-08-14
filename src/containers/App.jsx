@@ -52,11 +52,8 @@ class App extends React.Component {
     }
 
     render() {
-        console.log(this.props);
         return (
             <div className="kanban">
-                <h1 className="app-title">React.js Kanban</h1>
-
                 <div className="container">
                     <div className="tab-wrap">
                         <div
@@ -85,25 +82,16 @@ class App extends React.Component {
 
             </div>
         );
-        }
     }
-
+}
 
 const mapStateToProps = (state) => (state);
 
-//{
-//     tags: state.tags,
-//     tasks: state.tasks,
-//     stories: state.stories,
-// }
-
 const mapDispatchToProps = (dispatch) => ({
-
     // handle View
     handleToggleView(isColumnView) {
         dispatch(appActions.setIsColumnView(isColumnView));
     }
-
 });
 
 export default DragDropContext(HTML5Backend)(

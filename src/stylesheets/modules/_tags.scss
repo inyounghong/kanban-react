@@ -14,4 +14,14 @@
     border-radius: 3px;
     font-size: 13px;
     padding: 1px 0;
+
+    &.todo {
+        background: $todo;
+    }
+    &.testing {
+        background: $testing;
+    }
+    &.done {
+        background: $done;
+    }
 }

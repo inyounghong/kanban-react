@@ -23,14 +23,16 @@ export default class Tags extends React.Component {
                 name: "Done",
                 color: "#57dc39",
             },
-        ]
+        ];
 
-        const tags = this.props.tags.map(tag => (
-            <div className="tag"
-                style={{background: statusList[tag].color}}>
+        const tags = this.props.tags.map(function(tag) {
+            const className = "tag " + statusList[tag].name.toLowerCase();
+            return (
+                <div className={className}>
                 {statusList[tag].name}
             </div>
-        ));
+            );
+        });
 
         return (
             <div className="tag-wrap">
