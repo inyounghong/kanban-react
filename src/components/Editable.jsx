@@ -18,7 +18,7 @@ export default class Editable extends React.Component {
         this.setState({isEditing: true});
     }
     handleChange(e) {
-        this.setState({text: e.target.value.trim()});
+        this.setState({text: e.target.value});
     }
 
     handleFinishEdit(e) {
