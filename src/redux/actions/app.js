@@ -9,6 +9,7 @@ function selectNote(noteId) {
 }
 
 function setIsColumnView(isColumnView) {
+    console.log("setting to :" + isColumnView);
     return {
         type: actionTypes.SET_IS_COLUMN_VIEW,
         payload: isColumnView,

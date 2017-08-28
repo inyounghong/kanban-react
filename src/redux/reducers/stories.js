@@ -122,47 +122,6 @@ export default function stories(state = defaultState, action) {
             }
             return story;
         });
-
-    //   const sourceStory = state.filter(story => ~story.tasks.indexOf(source.id))[0];
-    //   const targetStory = state.filter(story => ~story.tasks.indexOf(target.id))[0];
-    //   const sourceTaskIndex = sourceStory.tasks.indexOf(source.id);
-    //   const targetTaskIndex = targetStory.tasks.indexOf(target.id);
-
-      // Moving to same story
-    //   if(sourceStory.id === targetStory.id) {
-    //       return state.map(story => {
-    //         if(story.id === sourceStory.id) {
-    //           return Object.assign({}, story, {
-    //             tasks: update(sourceStory.tasks, {
-    //               $splice: [
-    //                 [sourceTaskIndex, 1], // remove at index of current dragging task
-    //                 [targetTaskIndex, 0, sourceId], //insert sourceId into given index
-    //               ],
-    //             }),
-    //           });
-    //         }
-    //
-    //         return story;
-    //       });
-    //     }
-    // return state.map(story => {
-    //   if(story.id === sourceStory.id) {
-    //     return Object.assign({}, story, {
-    //       tasks: update(story.tasks, {
-    //         $splice: [[sourceTaskIndex, 1]],
-    //       }),
-    //     });
-    //   }
-    //
-    //   if(story.id === targetStory.id) {
-    //     return Object.assign({}, story, {
-    //       tasks: update(story.tasks, {
-    //         $splice: [[targetTaskIndex, 0, sourceId]],
-    //       }),
-    //     });
-    //   }
-
-    //   return story;
     }
 
     default:
