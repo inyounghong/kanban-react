@@ -12,74 +12,59 @@ class App extends React.Component {
 
     constructor() {
         super();
-        this.addTagToNote = this.addTagToNote.bind(this);
+        this.handleAddStory = this.handleAddStory.bind(this);
         this.setEditingNote = this.setEditingNote.bind(this);
         this.handleDeleteTask = this.handleDeleteTask.bind(this);
         this.handleToggleView = this.handleToggleView.bind(this);
     }
+
     handleToggleView() {
         this.props.handleToggleView(!this.props.app.isColumnView);
     }
-    addTagToNote() {
-        console.log("adding tag to note");
-    }
+
     setEditingNote(noteId) {
         setState({editingNote: noteId});
     }
+
     handleDeleteTask(taskId) {
-        // this.setState({editingNote: null});
         this.props.deleteTask(this.props.selectedNote, taskId);
     }
-    renderTagDisplay() {
-        const tags = this.props.tags.map(tag => (
-            <div className="tag">{tag.name}</div>
-        ));
-        return (
-            <div className="tag-display">
-                {tags.length > 0 ? tags : "No tags"}
-            </div>
-        )
-    }
-    renderTagList() {
-        const tags = this.props.tags.map(tag => (
-            <li onClick={this.addTagToNote}>{tag.name}</li>
-        ))
-        return (
-            <ul className="tag-list">
-                {tags}
-            </ul>
-        )
+
+    handleAddStory() {
+        console.log("add story");
     }
 
     render() {
-        return (
-            <div className="kanban">
-                <div className="container">
-                    <div className="tab-wrap">
-                        <div
-                            className="tab"
-                            style={{background: (this.props.app.isColumnView) ? "#ddd" : "none"}}
-                            onClick={this.handleToggleView}>
-                            <i className="fa fa-columns"></i> Column View
-                        </div>
-                        <div className="tab"
-                            style={{background: (!this.props.app.isColumnView) ? "#ddd" : "none"}}
-                            onClick={this.handleToggleView}>
-                            <i className="fa fa-align-justify"></i> Story View
-                        </div>
-                    </div>
+        const columnClass = (this.props.app.isColumnView) ? "tab active" : "tab";
+        const storyClass = (!this.props.app.isColumnView) ? "tab active" : "tab";
 
+        return (
+
+            <div className="container">
+                <div className="tab-wrap">
                     <div
-                        className="reset-store"
-                        onClick={this.props.onReset} >
-                        Reset persisted store
+                        className={columnClass}
+                        onClick={this.handleToggleView}>
+                        <i className="fa fa-columns"></i> Column View
                     </div>
-                    <List
-                        stories={this.props.stories}
-                        tasks={this.props.tasks}
-                    />
+                    <div className={storyClass}
+                        onClick={this.handleToggleView}>
+                        <i className="fa fa-align-justify"></i> Story View
+                    </div>
                 </div>
 
+                <List
+                    stories={this.props.stories}
+                    tasks={this.props.tasks}
+                />
+                <div className="add-story"
+                     onClick={this.addStory} >
+                     <i className="fa fa-fw fa-plus"></i> Add Story
+                 </div>
+                 <br/><br/>
+                 <div className="reset-store" onClick={this.props.onReset}>
+                     Reset persisted store
+                 </div>
             </div>
         );
     }
@@ -92,6 +77,7 @@ const mapDispatchToProps = (dispatch) => ({
     handleToggleView(isColumnView) {
         dispatch(appActions.setIsColumnView(isColumnView));
     }
+
 });
 
 export default DragDropContext(HTML5Backend)(

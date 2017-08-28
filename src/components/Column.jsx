@@ -10,9 +10,6 @@ export default class Column extends React.Component {
         }
         // this.handleMove = this.handleMove.bind(this);
     }
-    // handleMove() {
-    //     console.log(this.props);
-    // }
 
     render() {
         const connectDropTarget = this.props.connectDropTarget;
@@ -23,7 +20,6 @@ export default class Column extends React.Component {
                     task={task}
                     key={task.id}
                     storyId={this.props.id.split("_")[0]}
-                    // handleMove={this.handleMove}
                 />
             )
         })

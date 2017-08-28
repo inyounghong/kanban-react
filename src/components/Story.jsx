@@ -18,12 +18,15 @@ export default class Story extends React.Component {
         this.renderTasks = this.renderTasks.bind(this);
         this.toggleIsOpen = this.toggleIsOpen.bind(this);
     }
+
     toggleIsOpen() {
         this.setState({isOpen: !this.state.isOpen});
     }
+
     handleAddTask() {
         this.props.addTask(this.props.story.id);
     }
+
     handleUpdate(text) {
         const updatedStory = {
             ...this.props.story,
@@ -59,6 +62,7 @@ export default class Story extends React.Component {
             </div>
         )
     }
+
     renderTasks() {
         const storyTasks = this.props.tasks;
         const storyId = this.props.story.id;
@@ -70,11 +74,8 @@ export default class Story extends React.Component {
                 id={storyId + "_" + columnTypes.NONE}
             />
         );
-
-        // return (
-        //     <div>Just the tasks for this story</div>
-        // )
     }
+
     render() {
         const arrowClass = "fa fa-fw fa-chevron-" + (this.state.isOpen ? "down" : "right");
         return (
@@ -88,7 +89,9 @@ export default class Story extends React.Component {
                 />
                 <span className="task-count">{this.props.tasks.length} Tasks</span>
                 <span className="add-button"
-                    onClick={this.handleAddTask}>(+)</span>
+                    onClick={this.handleAddTask}>
+                    <i className="fa fa-fw fa-plus"></i>Add Task
+                </span>
 
                 <div className="column-container" style={{display: this.state.isOpen ? 'block' : 'none'}}>
                     {this.props.isColumnView ? this.renderColumns() : this.renderTasks()}
